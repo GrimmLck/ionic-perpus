@@ -1,5 +1,7 @@
 {
   "name": "pus",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

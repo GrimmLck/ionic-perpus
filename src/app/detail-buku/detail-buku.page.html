@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="hijau">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="buku"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      {{ data.judul }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card"  color="gray">
+    <ion-img src="http://perpustakaan.idwebbuilder.com/sampul/{{data.cover}}"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{data.kd_buku}} - {{data.judul}}</ion-card-title>
+      <ion-card-subtitle>
+        <table>
+          <tr>
+            <td style="width:30%;">Pengarang</td>
+            <td>:</td>
+            <td>{{data.nama_pengarang}}</td>
+          </tr>
+          <tr>
+            <td>Penerbit</td>
+            <td>:</td>
+            <td>{{data.nama_penerbit}}</td>
+          </tr>
+          <tr>
+            <td>Kategori</td>
+            <td>:</td>
+            <td>{{data.nama_kategori}}</td>
+          </tr>
+        </table>
+        <p></p>
+        <b>STATUS :  {{data.status}}</b>
+      </ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

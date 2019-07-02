@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+
+import { AppPageService } from "./app-page.service";
 
 @Component({
   selector: 'app-root',
@@ -19,21 +21,46 @@ export class AppComponent {
       title: 'List',
       url: '/list',
       icon: 'list'
+    },
+    /*{
+      title: 'Buku',
+      url: '/buku',
+      icon: 'book'
+    },*/
+    {
+      title: 'Login',
+      url: '/login',
+      icon: 'contact'
     }
   ];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    public navCtrl: NavController,
+    private app: AppPageService
   ) {
     this.initializeApp();
   }
+
+  user: any
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      let profile = localStorage.getItem("profile");
+      if(profile){
+        this.app.appPages = [
+          { title: 'Home', url: '/home', icon: 'home' },
+          { title: 'Buku', url: '/buku', icon: 'book' },
+          { title: 'KELUAR', url: '/logout', icon: 'power' }
+        ]
+        this.navCtrl.navigateRoot("home");
+        this.user = JSON.parse(profile)
+      }
     });
   }
 }

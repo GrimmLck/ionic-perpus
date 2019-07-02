@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+h1 {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 40px;
+    margin: 0 auto;
+    color: aquamarine;
+    padding: 0;
+}
+
+ion-list{
+    padding: 0 15px;
+}
+
+.in-item{
+    display: inherit;
+}
+
+p{
+    font-family: 'Open Sans', sans-serif;
+    margin: 5px 0 10px 0;
+    font-size: 15px;
+}
+
+img{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 100%;
+}
