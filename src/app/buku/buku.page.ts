@@ -41,6 +41,11 @@ export class BukuPage implements OnInit {
     this.navCtrl.navigateBack('/detail-buku/'+JSON.stringify(bk))
   }
 
+  editData(item) {
+    console.log(item)
+    this.navCtrl.navigateRoot('add-buku/'+JSON.stringify(item));
+  }
+
   showCari(){
     if(this.cari)
       this.cari=false
@@ -82,10 +87,5 @@ export class BukuPage implements OnInit {
       this.navCtrl.back();
     })
 
-  }
-
-  editData(item){
-    this.navCtrl.navigateRoot('add-buku/'+JSON.stringify(item));
-    console.log(item)
   }
 }

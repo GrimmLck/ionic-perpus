@@ -11,34 +11,33 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AddBukuPage implements OnInit {
 
-  id: string
-  kode: string; judul: string; kdpeng: string
-  kdpen: string; kdkategori: string; hal: string
-  edisi: string; isbn: string; tmpt: string
-  thn: string
-  cover: any; old_foto: any; img1: any;
-  penerbit:any
-  pengarang:any
+  id: string;
+  kode: string; tmpt: string;  
+  judul: string; kdpen: string;
+  kdpeng: string; thn: string
+  pengarang: any; sampul: any; old_foto: any; img1: any;
+  penerbit: any; kdkategori: string; 
   kategori:any
   data: any
+  hal: string;
+  edisi: string; isbn: string;
   newTrustFormVisible: boolean = false
 
   constructor(
     public http:HttpClient,
     public navCtrl: NavController,
     public toast: ToastController,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
   ) {
-    this.img1 = "assets/images/upload.jpg";
+    this.img1 = "assets/upload.jpg";
     this.data = JSON.parse(this.route.snapshot.paramMap.get("data"));
 
     if(this.data !=null) {
-      this.id = this.data.id
+      this.id = this.data.ID
       this.kode = this.data.kd_buku
       this.judul = this.data.judul
       this.kdpeng = this.data.kd_pengarang
       this.kdpen = this.data.kd_penerbit
-      this.kdkategori = this.data.kd_kategori
       this.hal = this.data.halaman
       this.edisi = this.data.edisi
       this.isbn = this.data.ISBN
@@ -50,10 +49,10 @@ export class AddBukuPage implements OnInit {
    }
 
    //Untuk ion-select
-   compareWithfn = (o1, o2) => {
+   compareWithFn = (o1, o2) => {
      return o1 == o2;
    };
-   compareWith = this.compareWithfn
+   compareWith = this.compareWithFn
 
   ngOnInit() {
     this.Viewdt_pengarang()
@@ -89,6 +88,7 @@ export class AddBukuPage implements OnInit {
   }
 
   simpan(){
+    
     let head: any
     head = new HttpHeaders();
     head.append('Accept', 'application/json');
@@ -97,24 +97,26 @@ export class AddBukuPage implements OnInit {
 
     let frmBuku = new FormData();
     frmBuku.append('kode', this.kode);
-    frmBuku.append('judul', this.judul);
-    frmBuku.append('kdpeng', this.kdpeng);
-    frmBuku.append('kdpen', this.kdpen);
-    frmBuku.append('kdkateg', this.kdkategori);
-    frmBuku.append('hal', this.hal);
+    frmBuku.append('nama', this.judul);
+    frmBuku.append('kdpengarang', this.kdpeng);
+    frmBuku.append('kdpenerbit', this.kdpen);
+    frmBuku.append('kategori', this.kdkategori);
+    frmBuku.append('halaman', this.hal);
     frmBuku.append('edisi', this.edisi);
     frmBuku.append('isbn', this.isbn);
-    frmBuku.append('tmpt', this.tmpt);
-    frmBuku.append('thn', this.thn);
-    frmBuku.append('cover', this.file);
+    frmBuku.append('tmptterbit', this.tmpt);
+    frmBuku.append('thnterbit', this.thn);
+    frmBuku.append('sampul', this.file);
     frmBuku.append('old_foto', this.old_foto);
+    // console.log(frmBuku)
 
     if(this.data != null){
       //EDIT
       frmBuku.append('id', this.data.id);
     }
 
-    this.http.post("http://perpustakaan.idwebbuilder.com/api/mobile/savebuku", frmBuku, head).subscribe(data => {
+    this.http.post("http://perpustakaan.idwebbuilder.com/api/mobile/savebuku", frmBuku, head)
+    .subscribe( data => {
       console.log(data)
       this.notif(data['msg']);
     }, err => {

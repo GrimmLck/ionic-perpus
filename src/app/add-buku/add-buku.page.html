@@ -10,10 +10,6 @@
 <ion-content>
   <ion-list>
     <h1>Data Buku Baru</h1>
-      <ion-item style="display: none;">
-        <ion-input type="hidden" [(ngModel)]="id"></ion-input>
-      </ion-item>
-
       <ion-item>
         <ion-label position="floating">Kode Buku</ion-label>
         <ion-input type="text" [(ngModel)]="kode"></ion-input>
@@ -27,21 +23,21 @@
       <ion-item>
         <ion-label position="floating">Pengarang</ion-label>
         <ion-select [(ngModel)]="kdpeng" [interfaceOptions]="customAlertOptions" interface="action-sheet" okText="Pilih" cancelText="Batal" placeholder="Pilih Pengarang" [compareWith]="compareWithFn">
-          <ion-select-option *ngFor="let dtpeng of pengarang" value="{{dtpeng.kd_pengarang}}">{{dtpeng.nama_pengarang}}</ion-select-option>
+          <ion-select-option *ngFor="let dt of pengarang" value="{{dt.kd_pengarang}}">{{dt.nama_pengarang}}</ion-select-option>
         </ion-select>
       </ion-item>
       
       <ion-item>
         <ion-label position="floating">Penerbit</ion-label>
         <ion-select [(ngModel)]="kdpen" [interfaceOptions]="customAlertOptions" interface="action-sheet" okText="Pilih" cancelText="Batal" placeholder="Pilih Penerbit" [compareWith]="compareWithFn">
-          <ion-select-option *ngFor="let dtpen of penerbit" value="{{dtpen.kd_penerbit}}">{{dtpen.nama_penerbit}}</ion-select-option>
+          <ion-select-option *ngFor="let dt of penerbit" value="{{dt.kd_penerbit}}">{{dt.nama_penerbit}}</ion-select-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Kategori</ion-label>
         <ion-select [(ngModel)]="kdkategori" [interfaceOptions]="customAlertOptions" interface="action-sheet" okText="Pilih" cancelText="Batal" placeholder="Pilih Kategori" [compareWith]="compareWithFn">
-          <ion-select-option *ngFor="let dtpen of kategori" value="{{dtpen.kd_kategori}}">{{dtpen.nama_kategori}}</ion-select-option>
+          <ion-select-option *ngFor="let dt of kategori" value="{{dt.kd_kategori}}">{{dt.nama_kategori}}</ion-select-option>
         </ion-select>
       </ion-item>
 
@@ -71,9 +67,9 @@
       </ion-item>
 
       <ion-item>
-        <input #gambarBuku style="display:none;" type="file" accept="image/*" [(ngModel)]="cover" (change)="getImage($event)">
+        <input #gambarBuku style="display:none;" type="file" accept="image/*" [(ngModel)]="sampul" (change)="getImage($event)">
       </ion-item>
-      <ion-input type="text" [hidden]="!newTrustFormVisible" [(ngModel)]="old-foto"></ion-input>
+      <ion-input type="text" [hidden]="!newTrustFormVisible" [(ngModel)]="old_foto"></ion-input>
       <p>Cover Buku</p>
       <img [src]="img1" (click)="gambarBuku.click()"/>
 
